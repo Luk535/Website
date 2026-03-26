@@ -13,27 +13,27 @@ function App() {
       <Gallery />
       <About />
       
-      <footer className="portfolio-footer">
+      <footer className="site-footer">
         <div className="footer-content">
-          <a href={`mailto:${contactEmail}`} className="footer-email glass-button">
-            <Mail size={18} />
+          <a href={`mailto:${contactEmail}`} className="footer-email-link">
+            <Mail size={16} strokeWidth={2} />
             <span>{contactEmail}</span>
           </a>
           
           <div className="footer-social">
-            <a href="#" className="social-link glass-button" aria-label="Instagram">
-              <Instagram size={18} />
+            <a href="#" className="social-link" aria-label="Instagram">
+              <Instagram size={18} strokeWidth={2} />
             </a>
-            <a href="#" className="social-link glass-button" aria-label="Twitter">
-              <Twitter size={18} />
+            <a href="#" className="social-link" aria-label="Twitter">
+              <Twitter size={18} strokeWidth={2} />
             </a>
-            <a href="#" className="social-link glass-button" aria-label="LinkedIn">
-              <Linkedin size={18} />
+            <a href="#" className="social-link" aria-label="LinkedIn">
+              <Linkedin size={18} strokeWidth={2} />
             </a>
           </div>
         </div>
         
-        <p className="footer-copyright">© 2025 Luka Cianfarani. All rights reserved.</p>
+        <p className="footer-copyright">© 2025 Luka Cianfarani</p>
       </footer>
     </div>
   );

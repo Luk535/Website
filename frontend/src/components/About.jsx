@@ -5,6 +5,7 @@ const About = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -14,13 +15,13 @@ const About = () => {
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -29,7 +30,7 @@ const About = () => {
     <section ref={sectionRef} className={`about-section ${isVisible ? 'visible' : ''}`}>
       <div className="about-container">
         <div className="about-image-wrapper">
-          <div className="glass-card">
+          <div className="rounded-image-card">
             <img 
               src="https://images.unsplash.com/photo-1712425718855-5169714b3632" 
               alt="Luka Cianfarani"
@@ -39,7 +40,7 @@ const About = () => {
         </div>
         
         <div className="about-text">
-          <h2 className="about-title">About</h2>
+          <h2 className="section-label">About</h2>
           <div className="about-content">
             <p>
               Luka is a creative director and visual artist based in New York, 

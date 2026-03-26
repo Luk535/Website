@@ -8,6 +8,7 @@ const Gallery = () => {
   const galleryRef = useRef(null);
 
   useEffect(() => {
+    const currentRef = galleryRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -17,13 +18,13 @@ const Gallery = () => {
       { threshold: 0.1 }
     );
 
-    if (galleryRef.current) {
-      observer.observe(galleryRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (galleryRef.current) {
-        observer.unobserve(galleryRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -38,44 +39,29 @@ const Gallery = () => {
     document.body.style.overflow = 'auto';
   };
 
-  // Define grid placement for asymmetrical layout
-  const gridPlacements = [
-    { gridColumn: 'span 2', gridRow: 'span 2' }, // Large
-    { gridColumn: 'span 1', gridRow: 'span 1' }, // Small
-    { gridColumn: 'span 1', gridRow: 'span 2' }, // Tall
-    { gridColumn: 'span 2', gridRow: 'span 1' }, // Wide
-    { gridColumn: 'span 1', gridRow: 'span 1' }, // Small
-    { gridColumn: 'span 1', gridRow: 'span 2' }, // Tall
-    { gridColumn: 'span 2', gridRow: 'span 1' }, // Wide
-    { gridColumn: 'span 1', gridRow: 'span 1' }, // Small
-  ];
-
   return (
     <>
       <section ref={galleryRef} className="gallery-section">
-        <h2 className="section-title">Selected Work</h2>
-        <div className={`asymmetric-gallery ${isVisible ? 'fade-in' : ''}`}>
+        <h2 className="section-label">Selected Work</h2>
+        <div className={`gallery-grid ${isVisible ? 'fade-in' : ''}`}>
           {portfolioProjects.map((project, index) => (
             <div
               key={project.id}
-              className="gallery-card"
+              className="project-card"
               onClick={() => openProject(project)}
-              style={{
-                ...gridPlacements[index % gridPlacements.length],
-                animationDelay: `${index * 0.1}s}`
-              }}
+              style={{ animationDelay: `${index * 0.08}s` }}
             >
-              <div className="gallery-card-inner">
+              <div className="card-image-wrapper">
                 <img
                   src={project.coverImage}
                   alt={project.title}
                   loading="lazy"
-                  className="gallery-image"
+                  className="card-image"
                 />
-                <div className="glass-overlay">
-                  <div className="glass-panel">
-                    <h3 className="project-title">{project.title}</h3>
-                    <p className="project-category">{project.category}</p>
+                <div className="card-overlay">
+                  <div className="card-info">
+                    <h3 className="card-title">{project.title}</h3>
+                    <p className="card-category">{project.category}</p>
                   </div>
                 </div>
               </div>
