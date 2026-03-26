@@ -97,4 +97,4 @@ export const portfolioProjects = [
   }
 ];
 
-export const contactEmail = "luka@example.com";
+export const contactEmail = "lukacianfarani@gmail.com";
