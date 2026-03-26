@@ -9,11 +9,8 @@ const Hero = () => {
 
   return (
     <section className="hero-section">
-      <div className="hero-glow"></div>
       <div className={`hero-content ${isVisible ? 'visible' : ''}`}>
-        <h1 className="hero-name">Luka Cianfarani</h1>
-        <p className="hero-subtitle">Creative Director & Visual Artist</p>
-        <p className="hero-intro">Crafting timeless visual narratives through minimal design</p>
+        <h1 className="hero-name gradient-name">Luka Cianfarani</h1>
       </div>
     </section>
   );
