@@ -72,7 +72,8 @@ body::before {
 .nav-item {
   position: relative;
   z-index: 1;
-  padding: 8px 22px;
+  flex: 1;
+  padding: 8px 18px;
   border: none;
   background: transparent;
   font-family: inherit;
@@ -84,6 +85,7 @@ body::before {
   transition: color 0.3s ease;
   letter-spacing: 0.2px;
   white-space: nowrap;
+  text-align: center;
 }
 
 .nav-item-active {
@@ -99,6 +101,30 @@ body::before {
   align-items: center;
   justify-content: center;
   overflow: visible;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 100%,
+      rgba(10, 31, 68, 0.32) 0%,
+      rgba(29, 78, 216, 0.18) 30%,
+      rgba(59, 130, 246, 0.1) 55%,
+      transparent 75%
+    );
+}
+
+/* fade hero into the section below */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(160, 195, 250, 0.28) 60%,
+    rgba(148, 188, 248, 0.38) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-content {
@@ -124,9 +150,6 @@ body::before {
   margin: 0;
 }
 
-/* Per-letter gradient: gradient is 1400% wide so each letter shows its own slice.
-   background-position slides to the correct position per --idx.
-   This avoids the parent background-clip bug with inline-block children. */
 .hero-letter {
   display: inline-block;
   text-decoration: none;
@@ -154,8 +177,8 @@ body::before {
 }
 
 .hero-letter:hover {
-  font-size: 1.45em;
-  transform: translateY(-0.12em);
+  font-size: 1.15em;
+  transform: translateY(-0.06em);
 }
 
 .hero-letter:focus { outline: none; }
