@@ -18,8 +18,13 @@ function App() {
       <Nav activePage={page} onPageChange={setPage} />
       <Hero />
       {show('Page 1') && <Gallery />}
-      {show('Page 2') && <About />}
-      {page === 'Page 3' && (
+      {(page === 'Page 2' || page === 'All') && (
+        <section className="placeholder-section">
+          <p className="section-label">Page 2</p>
+          <p className="placeholder-text">Content coming soon</p>
+        </section>
+      )}
+      {(page === 'Page 3') && (
         <section className="placeholder-section">
           <p className="section-label">Page 3</p>
           <p className="placeholder-text">Content coming soon</p>
