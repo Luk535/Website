@@ -10,9 +10,9 @@ const ParticleBackground = () => {
     const mouse = { x: -9999, y: -9999 };
     let particles = [];
 
-    const REPEL_RADIUS = 100;
-    const REPEL_STRENGTH = 6;
-    const SPACING = 72;
+    const REPEL_RADIUS = 110;
+    const REPEL_STRENGTH = 7;
+    const SPACING = 42;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -33,20 +33,14 @@ const ParticleBackground = () => {
             y: j * SPACING,
             vx: 0,
             vy: 0,
-            r: Math.random() * 1.2 + 0.8,
+            r: Math.random() * 1.8 + 1.2,
           });
         }
       }
     };
 
-    const onMove = (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
-    const onLeave = () => {
-      mouse.x = -9999;
-      mouse.y = -9999;
-    };
+    const onMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
+    const onLeave = () => { mouse.x = -9999; mouse.y = -9999; };
 
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseleave', onLeave);
@@ -71,12 +65,11 @@ const ParticleBackground = () => {
         p.vy += (p.hy - p.y) * 0.04;
         p.vx *= 0.82;
         p.vy *= 0.82;
-
         p.x += p.vx;
         p.y += p.vy;
 
         const distFromHome = Math.sqrt((p.x - p.hx) ** 2 + (p.y - p.hy) ** 2);
-        const opacity = 0.18 + Math.min(distFromHome / 40, 1) * 0.22;
+        const opacity = 0.38 + Math.min(distFromHome / 30, 1) * 0.35;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -101,10 +94,8 @@ const ParticleBackground = () => {
       ref={canvasRef}
       style={{
         position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
+        top: 0, left: 0,
+        width: '100%', height: '100%',
         pointerEvents: 'none',
         zIndex: 0,
       }}

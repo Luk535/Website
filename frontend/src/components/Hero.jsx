@@ -8,6 +8,8 @@ const Hero = () => {
   }, []);
 
   const letters = 'Luka Cianfarani'.split('');
+  const total = letters.filter(c => c !== ' ').length - 1;
+  let idx = 0;
 
   return (
     <section className="hero-section">
@@ -15,10 +17,12 @@ const Hero = () => {
         <h1 className="hero-name">
           {letters.map((char, i) => {
             if (char === ' ') return <span key={i} className="hero-space">&nbsp;</span>;
+            const letterIdx = idx++;
             return (
               <a
                 key={i}
                 className="hero-letter"
+                style={{ '--idx': letterIdx, '--total': total }}
                 href={`https://en.wikipedia.org/wiki/${char}`}
                 target="_blank"
                 rel="noreferrer"

@@ -1,18 +1,19 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
-const PAGES = ['Work', 'About', 'Contact'];
+const PAGES = ['All', 'Page 1', 'Page 2', 'Page 3', 'Contact'];
 
 const Nav = ({ activePage, onPageChange }) => {
   const activeIdx = PAGES.indexOf(activePage);
-  const pillRef = useRef(null);
 
   return (
     <nav className="nav-container">
       <div className="nav-glass">
         <div
           className="nav-pill"
-          ref={pillRef}
-          style={{ transform: `translateX(${activeIdx * 100}%)`, width: `${100 / PAGES.length}%` }}
+          style={{
+            transform: `translateX(${activeIdx * 100}%)`,
+            width: `${100 / PAGES.length}%`,
+          }}
         />
         {PAGES.map((page) => (
           <button

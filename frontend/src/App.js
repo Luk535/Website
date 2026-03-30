@@ -8,16 +8,24 @@ import Nav from './components/Nav';
 import ParticleBackground from './components/ParticleBackground';
 
 function App() {
-  const [page, setPage] = useState('Work');
+  const [page, setPage] = useState('All');
+
+  const show = (p) => page === 'All' || page === p;
 
   return (
     <div className="App">
       <ParticleBackground />
       <Nav activePage={page} onPageChange={setPage} />
       <Hero />
-      {page === 'Work' && <Gallery />}
-      {page === 'About' && <About />}
-      {page === 'Contact' && <ContactButton />}
+      {show('Page 1') && <Gallery />}
+      {show('Page 2') && <About />}
+      {page === 'Page 3' && (
+        <section className="placeholder-section">
+          <p className="section-label">Page 3</p>
+          <p className="placeholder-text">Content coming soon</p>
+        </section>
+      )}
+      {show('Contact') && <ContactButton />}
     </div>
   );
 }

@@ -72,7 +72,7 @@ body::before {
 .nav-item {
   position: relative;
   z-index: 1;
-  padding: 8px 28px;
+  padding: 8px 22px;
   border: none;
   background: transparent;
   font-family: inherit;
@@ -120,50 +120,71 @@ body::before {
   font-size: clamp(56px, 10vw, 110px);
   font-weight: 800;
   letter-spacing: -3px;
-  line-height: 1.15;
+  line-height: 1.4;
   margin: 0;
-  background: linear-gradient(to right,
-    #0d2158 0%,
-    #1a3a8f 10%,
-    #1d4ed8 22%,
-    #2563eb 34%,
-    #3b82f6 46%,
-    #60a5fa 58%,
-    #7ec8fd 70%,
-    #93c5fd 82%,
-    #bfdbfe 100%
-  );
-  background-size: 180% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 10s ease infinite;
 }
 
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% center; }
-  50%       { background-position: 100% center; }
-}
-
+/* Per-letter gradient: gradient is 1400% wide so each letter shows its own slice.
+   background-position slides to the correct position per --idx.
+   This avoids the parent background-clip bug with inline-block children. */
 .hero-letter {
   display: inline-block;
   text-decoration: none;
   font-size: 1em;
   font-weight: inherit;
   letter-spacing: inherit;
+  background: linear-gradient(to right,
+    #0d2158 0%,
+    #1a3a8f 14%,
+    #2563eb 30%,
+    #3b82f6 46%,
+    #60a5fa 62%,
+    #93c5fd 78%,
+    #bfdbfe 100%
+  );
+  background-size: 1400% 100%;
+  background-position: calc(var(--idx, 0) / var(--total, 13) * 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
   transition:
-    font-size 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
-    transform  0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size 0.35s cubic-bezier(0.25, 1.2, 0.5, 1),
+    transform  0.35s cubic-bezier(0.25, 1.2, 0.5, 1);
 }
 
 .hero-letter:hover {
   font-size: 1.45em;
-  transform: translateY(-0.14em);
+  transform: translateY(-0.12em);
 }
+
+.hero-letter:focus { outline: none; }
 
 .hero-space {
   display: inline-block;
   width: 0.28em;
+}
+
+/* Placeholder page */
+.placeholder-section {
+  padding: 120px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  background: linear-gradient(180deg,
+    rgba(180, 210, 255, 0.35) 0%,
+    rgba(160, 195, 250, 0.3) 100%
+  );
+  position: relative;
+  z-index: 1;
+}
+
+.placeholder-text {
+  font-size: 18px;
+  color: #94A3B8;
+  margin-top: 16px;
 }
 
 /* Gallery */
