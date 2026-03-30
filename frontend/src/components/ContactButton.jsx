@@ -7,8 +7,10 @@ const ContactButton = () => {
 
   return (
     <section className="contact-section">
-      <a 
-        href={`mailto:${contactEmail}`}
+      <a
+        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${contactEmail}`}
+        target="_blank"
+        rel="noreferrer"
         className="contact-button"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
