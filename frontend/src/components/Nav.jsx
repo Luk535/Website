@@ -11,8 +11,8 @@ const Nav = ({ activePage, onPageChange }) => {
         <div
           className="nav-pill"
           style={{
-            transform: `translateX(${activeIdx * 100}%)`,
-            width: `${100 / PAGES.length}%`,
+            left: `calc(4px + ${activeIdx} * (100% - 8px) / ${PAGES.length})`,
+            width: `calc((100% - 8px) / ${PAGES.length})`,
           }}
         />
         {PAGES.map((page) => (

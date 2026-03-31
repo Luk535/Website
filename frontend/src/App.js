@@ -6,7 +6,6 @@ import ContactButton from './components/ContactButton';
 import About from './components/About';
 import Nav from './components/Nav';
 import ParticleBackground from './components/ParticleBackground';
-import Jumpscare from './components/Jumpscare';
 
 function App() {
   const [page, setPage] = useState('All');
@@ -25,7 +24,6 @@ function App() {
 
   return (
     <div className="App">
-      <Jumpscare />
       <ParticleBackground />
       <Nav activePage={page} onPageChange={setPage} />
       <Hero />
