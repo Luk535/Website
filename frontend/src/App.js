@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
@@ -9,16 +9,6 @@ import ParticleBackground from './components/ParticleBackground';
 
 function App() {
   const [page, setPage] = useState('All');
-
-  useEffect(() => {
-    const onVisibility = () => {
-      document.title = document.hidden
-        ? 'come back... 👀'
-        : 'Luka Cianfarani | Website';
-    };
-    document.addEventListener('visibilitychange', onVisibility);
-    return () => document.removeEventListener('visibilitychange', onVisibility);
-  }, []);
 
   const show = (p) => page === 'All' || page === p;
 

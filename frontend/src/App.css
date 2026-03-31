@@ -276,9 +276,22 @@ body::before {
 
 .work-image {
   width: 100%;
-  aspect-ratio: 16/10;
+  aspect-ratio: 4/3;
   object-fit: cover;
   display: block;
+}
+
+.spline-frame {
+  height: auto;
+  aspect-ratio: 4/3;
+  border: none;
+}
+
+.coming-soon-card {
+  background: linear-gradient(135deg,
+    rgba(29, 78, 216, 0.15) 0%,
+    rgba(96, 165, 250, 0.1) 100%
+  );
 }
 
 .work-text-overlay {
@@ -294,14 +307,9 @@ body::before {
   border-radius: 18px;
   box-shadow: 0 4px 24px rgba(10, 31, 68, 0.12),
               inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.work-card:hover .work-text-overlay {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .work-title {
@@ -320,66 +328,6 @@ body::before {
   letter-spacing: 1px;
   text-transform: uppercase;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-}
-
-/* Lightbox */
-.image-lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 31, 68, 0.96);
-  backdrop-filter: blur(20px);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  animation: fadeIn 0.3s ease;
-}
-
-.lightbox-close {
-  position: fixed;
-  top: 40px;
-  right: 40px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  color: white;
-  font-size: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 2001;
-  transition: all 0.3s ease;
-  line-height: 1;
-  padding: 0;
-}
-
-.lightbox-close:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-}
-
-.lightbox-content {
-  max-width: 90%;
-  max-height: 90%;
-  animation: zoomIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes zoomIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-.lightbox-image {
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
-  border-radius: 24px;
-  box-shadow: 0 24px 96px rgba(0, 0, 0, 0.5);
 }
 
 /* Contact */
@@ -542,8 +490,6 @@ body::before {
   .contact-text { font-size: 36px; }
   .mail-icon-3d { width: 64px; height: 64px; }
   .mail-icon-3d svg { width: 36px; height: 36px; }
-  .lightbox-close { top: 20px; right: 20px; width: 48px; height: 48px; }
-  .image-lightbox { padding: 20px; }
   .about-section { padding: 80px 24px; }
   .about-container { grid-template-columns: 1fr; gap: 40px; }
 }
