@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-const PAGES = ['All', 'Page 1', 'Page 2', 'Page 3', 'Contact'];
+const PAGES = ['Home', 'Page 1', 'Page 2', 'Page 3', 'Contact'];
 
 const Nav = ({ activePage, onPageChange }) => {
   const activeIdx = PAGES.indexOf(activePage);

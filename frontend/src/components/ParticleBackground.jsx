@@ -12,7 +12,8 @@ const ParticleBackground = () => {
 
     const REPEL_RADIUS = 110;
     const REPEL_STRENGTH = 7;
-    const SPACING = 42;
+    const SPACING = 30;
+    const BASE_R = 1.5;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -33,7 +34,6 @@ const ParticleBackground = () => {
             y: j * SPACING,
             vx: 0,
             vy: 0,
-            r: 1.5,
           });
         }
       }
@@ -52,6 +52,12 @@ const ParticleBackground = () => {
 
     const tick = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Batch static particles into one draw call
+      ctx.beginPath();
+      const staticColor = `rgba(96, 165, 250, 0.38)`;
+
+      const displaced = [];
 
       for (const p of particles) {
         const dx = p.x - mouse.x;
@@ -72,10 +78,24 @@ const ParticleBackground = () => {
         p.y += p.vy;
 
         const distFromHome = Math.sqrt((p.x - p.hx) ** 2 + (p.y - p.hy) ** 2);
-        const opacity = 0.38 + Math.min(distFromHome / 30, 1) * 0.35;
 
+        if (distFromHome < 0.8) {
+          ctx.moveTo(p.hx + BASE_R, p.hy);
+          ctx.arc(p.hx, p.hy, BASE_R, 0, Math.PI * 2);
+        } else {
+          displaced.push({ p, distFromHome });
+        }
+      }
+
+      ctx.fillStyle = staticColor;
+      ctx.fill();
+
+      // Draw displaced particles individually with variable size
+      for (const { p, distFromHome } of displaced) {
+        const r = BASE_R + Math.min(distFromHome / 20, 2.5);
+        const opacity = 0.38 + Math.min(distFromHome / 30, 1) * 0.4;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(96, 165, 250, ${opacity})`;
         ctx.fill();
       }

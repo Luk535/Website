@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { portfolioProjects } from '../mock';
 
-const Gallery = () => {
+const Gallery = ({ startIndex = 0, count = 4 }) => {
+  const projects = portfolioProjects.slice(startIndex, startIndex + count);
   const [isVisible, setIsVisible] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
   const galleryRef = useRef(null);
@@ -32,7 +33,7 @@ const Gallery = () => {
       <section ref={galleryRef} className="gallery-section">
         <h2 className="section-label">Selected Work</h2>
         <div className={`gallery-grid-two ${isVisible ? 'fade-in' : ''}`}>
-          {portfolioProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <div
               key={project.id}
               className="work-card"
