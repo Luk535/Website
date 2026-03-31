@@ -7,7 +7,6 @@ const ParticleBackground = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let animId;
-    // mouse in document-space so repel works while scrolling
     const mouse = { x: -9999, y: -9999 };
     let particles = [];
 
@@ -23,7 +22,6 @@ const ParticleBackground = () => {
 
     const init = () => {
       particles = [];
-      // Cover the full document height so dots exist on every section
       const docHeight = Math.max(
         window.innerHeight * 4,
         document.documentElement.scrollHeight
@@ -39,13 +37,12 @@ const ParticleBackground = () => {
             y: j * SPACING,
             vx: 0,
             vy: 0,
-            r: Math.random() * 1.8 + 1.2,
+            r: 1.5,
           });
         }
       }
     };
 
-    // Store in document-space Y (clientY + scrollY)
     const onMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY + window.scrollY;
@@ -62,7 +59,6 @@ const ParticleBackground = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (const p of particles) {
-        // Physics in document-space
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -80,7 +76,6 @@ const ParticleBackground = () => {
         p.x += p.vx;
         p.y += p.vy;
 
-        // Convert to viewport-space for rendering
         const renderY = p.y - scroll;
         if (renderY < -5 || renderY > canvas.height + 5) continue;
 

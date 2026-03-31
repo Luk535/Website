@@ -110,7 +110,6 @@ body::before {
     );
 }
 
-/* fade hero into the section below */
 .hero-section::after {
   content: '';
   position: absolute;
@@ -172,13 +171,13 @@ body::before {
   background-clip: text;
   color: transparent;
   transition:
-    font-size 0.35s cubic-bezier(0.25, 1.2, 0.5, 1),
-    transform  0.35s cubic-bezier(0.25, 1.2, 0.5, 1);
+    transform 0.35s cubic-bezier(0.25, 1.2, 0.5, 1),
+    padding   0.35s cubic-bezier(0.25, 1.2, 0.5, 1);
 }
 
 .hero-letter:hover {
-  font-size: 1.15em;
-  transform: translateY(-0.06em);
+  transform: scale(1.18) translateY(-0.05em);
+  padding: 0 0.06em;
 }
 
 .hero-letter:focus { outline: none; }
@@ -554,6 +553,52 @@ body::before {
   .contact-text { font-size: 28px; }
   .work-title { font-size: 14px; }
   .work-category { font-size: 10px; }
+}
+
+/* Jumpscare */
+.jumpscare {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.82);
+  cursor: pointer;
+}
+
+.jumpscare-in {
+  animation: jumpscareIn 0.18s cubic-bezier(0.2, 0, 0, 1.5) forwards;
+}
+
+.jumpscare-out {
+  animation: jumpscareOut 0.4s ease forwards;
+}
+
+@keyframes jumpscareIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes jumpscareOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.1); }
+}
+
+.jumpscare-img {
+  width: min(80vw, 520px);
+  height: min(80vw, 520px);
+  object-fit: cover;
+  border-radius: 32px;
+  box-shadow: 0 24px 96px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.jumpscare-label {
+  margin-top: 24px;
+  font-size: 64px;
+  line-height: 1;
 }
 
 html { scroll-behavior: smooth; }
