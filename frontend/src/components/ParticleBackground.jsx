@@ -22,12 +22,8 @@ const ParticleBackground = () => {
 
     const init = () => {
       particles = [];
-      const docHeight = Math.max(
-        window.innerHeight * 4,
-        document.documentElement.scrollHeight
-      );
       const cols = Math.ceil(canvas.width / SPACING) + 1;
-      const rows = Math.ceil(docHeight / SPACING) + 1;
+      const rows = Math.ceil(canvas.height / SPACING) + 1;
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           particles.push({
@@ -45,7 +41,7 @@ const ParticleBackground = () => {
 
     const onMove = (e) => {
       mouse.x = e.clientX;
-      mouse.y = e.clientY + window.scrollY;
+      mouse.y = e.clientY;
     };
     const onLeave = () => { mouse.x = -9999; mouse.y = -9999; };
 
@@ -55,7 +51,6 @@ const ParticleBackground = () => {
     resize();
 
     const tick = () => {
-      const scroll = window.scrollY;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (const p of particles) {
@@ -76,14 +71,11 @@ const ParticleBackground = () => {
         p.x += p.vx;
         p.y += p.vy;
 
-        const renderY = p.y - scroll;
-        if (renderY < -5 || renderY > canvas.height + 5) continue;
-
         const distFromHome = Math.sqrt((p.x - p.hx) ** 2 + (p.y - p.hy) ** 2);
         const opacity = 0.38 + Math.min(distFromHome / 30, 1) * 0.35;
 
         ctx.beginPath();
-        ctx.arc(p.x, renderY, p.r, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(96, 165, 250, ${opacity})`;
         ctx.fill();
       }
