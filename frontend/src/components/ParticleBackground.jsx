@@ -6,13 +6,14 @@ const ParticleBackground = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
     let animId;
     const mouse = { x: -9999, y: -9999 };
     let particles = [];
 
-    const REPEL_RADIUS = 110;
-    const REPEL_STRENGTH = 7;
-    const SPACING = 30;
+    const REPEL_RADIUS = 100;
+    const REPEL_STRENGTH = 6;
+    const SPACING = 36;
     const BASE_R = 1.5;
 
     const resize = () => {
@@ -27,22 +28,12 @@ const ParticleBackground = () => {
       const rows = Math.ceil(canvas.height / SPACING) + 1;
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
-          particles.push({
-            hx: i * SPACING,
-            hy: j * SPACING,
-            x: i * SPACING,
-            y: j * SPACING,
-            vx: 0,
-            vy: 0,
-          });
+          particles.push({ hx: i * SPACING, hy: j * SPACING, x: i * SPACING, y: j * SPACING, vx: 0, vy: 0 });
         }
       }
     };
 
-    const onMove = (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
+    const onMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
     const onLeave = () => { mouse.x = -9999; mouse.y = -9999; };
 
     window.addEventListener('mousemove', onMove);
@@ -53,10 +44,7 @@ const ParticleBackground = () => {
     const tick = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Batch static particles into one draw call
       ctx.beginPath();
-      const staticColor = `rgba(96, 165, 250, 0.38)`;
-
       const displaced = [];
 
       for (const p of particles) {
@@ -87,10 +75,9 @@ const ParticleBackground = () => {
         }
       }
 
-      ctx.fillStyle = staticColor;
+      ctx.fillStyle = 'rgba(96, 165, 250, 0.38)';
       ctx.fill();
 
-      // Draw displaced particles individually with variable size
       for (const { p, distFromHome } of displaced) {
         const r = BASE_R + Math.min(distFromHome / 20, 2.5);
         const opacity = 0.38 + Math.min(distFromHome / 30, 1) * 0.4;
@@ -116,11 +103,10 @@ const ParticleBackground = () => {
     <canvas
       ref={canvasRef}
       style={{
-        position: 'fixed',
-        top: 0, left: 0,
+        position: 'fixed', top: 0, left: 0,
         width: '100%', height: '100%',
-        pointerEvents: 'none',
-        zIndex: 0,
+        pointerEvents: 'none', zIndex: 0,
+        willChange: 'transform',
       }}
     />
   );

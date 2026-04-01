@@ -28,10 +28,20 @@ const Gallery = ({ startIndex = 0, count = 4 }) => {
     return () => { document.body.style.overflow = ''; };
   }, [activeProject]);
 
+  // Prevent browser zoom (ctrl+scroll) when modal is open
+  useEffect(() => {
+    if (!activeProject) return;
+    const preventZoom = (e) => {
+      if (e.ctrlKey || e.metaKey) e.preventDefault();
+    };
+    document.addEventListener('wheel', preventZoom, { passive: false });
+    return () => document.removeEventListener('wheel', preventZoom);
+  }, [activeProject]);
+
   return (
     <>
       <section ref={galleryRef} className="gallery-section">
-        <h2 className="section-label">Selected Work</h2>
+        <h2 className="section-label">Gallery</h2>
         <div className={`gallery-grid-two ${isVisible ? 'fade-in' : ''}`}>
           {projects.map((project, index) => (
             <div
@@ -49,7 +59,7 @@ const Gallery = ({ startIndex = 0, count = 4 }) => {
                   loading="lazy"
                   style={{ pointerEvents: 'none' }}
                 />
-                <div className={`work-text-overlay${project.darkText ? ' work-text-overlay--dark' : ''}`}>
+                <div className="work-text-overlay">
                   <h3 className="work-title">{project.title}</h3>
                   <p className="work-category">{project.category}</p>
                 </div>
@@ -70,7 +80,7 @@ const Gallery = ({ startIndex = 0, count = 4 }) => {
               frameBorder="0"
               allowFullScreen
             />
-            <div className={`spline-modal-label${activeProject.darkText ? ' spline-modal-label--dark' : ''}`}>
+            <div className="spline-modal-label">
               <span className="spline-modal-title">{activeProject.title}</span>
               <span className="spline-modal-category">{activeProject.category}</span>
             </div>
