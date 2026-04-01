@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 
 const PAGES = ['Home', 'Page 1', 'Page 2', 'Page 3', 'Contact'];
 const PAGE_LABELS = {
-  Home: 'Luka Cianfarani',
+  Home: 'Home',
   'Page 1': 'Page 1',
   'Page 2': 'Page 2',
   'Page 3': 'Page 3',

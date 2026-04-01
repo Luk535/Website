@@ -31,8 +31,6 @@ function App() {
     }, 680);
   }, [darkMode]);
 
-  const show = (p) => page === 'Home' || page === p;
-
   return (
     <div className="App">
       {overlay && (
@@ -44,15 +42,15 @@ function App() {
       <ParticleBackground />
       <Nav activePage={page} onPageChange={setPage} darkMode={darkMode} onThemeToggle={handleThemeToggle} />
       {page === 'Home' && <Hero />}
-      {(page === 'Home' || page === 'Page 1') && <Gallery startIndex={0} count={4} />}
-      {page === 'Page 2' && <Gallery startIndex={4} count={4} />}
+      {page === 'Page 1' && <Gallery startIndex={0} count={4} darkMode={darkMode} />}
+      {page === 'Page 2' && <Gallery startIndex={4} count={4} darkMode={darkMode} />}
       {page === 'Page 3' && (
         <section className="placeholder-section">
           <p className="section-label">Page 3</p>
           <p className="placeholder-text">Content coming soon</p>
         </section>
       )}
-      {show('Contact') && <ContactButton />}
+      {page === 'Contact' && <ContactButton />}
     </div>
   );
 }
