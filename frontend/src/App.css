@@ -141,6 +141,10 @@ body::before {
   font-weight: 600;
 }
 
+body.light .nav-item-active {
+  color: #0A1F44;
+}
+
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -309,10 +313,23 @@ body::before {
   display: block;
 }
 
-.spline-frame {
-  height: auto;
+.work-preview-bg {
+  width: 100%;
   aspect-ratio: 4/3;
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.work-preview-orb {
+  width: 48%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 80px 40px rgba(180, 200, 255, 0.07);
+  pointer-events: none;
 }
 
 .work-text-overlay {
@@ -356,7 +373,6 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px;
   animation: fadeIn 0.25s ease;
 }
 
@@ -409,15 +425,36 @@ body::before {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 20px;
+  padding: 8px 8px 8px 20px;
   background: rgba(130, 130, 130, 0.28);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 100px;
   white-space: nowrap;
-  pointer-events: none;
+  pointer-events: all;
 }
+
+.spline-modal-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.spline-modal-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+.spline-modal-link:hover { background: rgba(255, 255, 255, 0.3); }
 
 .spline-modal-title {
   font-size: 14px;

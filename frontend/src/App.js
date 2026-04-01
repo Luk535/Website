@@ -43,7 +43,7 @@ function App() {
       )}
       <ParticleBackground />
       <Nav activePage={page} onPageChange={setPage} darkMode={darkMode} onThemeToggle={handleThemeToggle} />
-      <Hero />
+      {page === 'Home' && <Hero />}
       {(page === 'Home' || page === 'Page 1') && <Gallery startIndex={0} count={4} />}
       {page === 'Page 2' && <Gallery startIndex={4} count={4} />}
       {page === 'Page 3' && (

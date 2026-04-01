@@ -11,10 +11,10 @@ const ParticleBackground = () => {
     const mouse = { x: -9999, y: -9999 };
     let particles = [];
 
-    const REPEL_RADIUS = 100;
+    const REPEL_RADIUS = 90;
     const REPEL_STRENGTH = 6;
-    const SPACING = 36;
-    const BASE_R = 1.5;
+    const SPACING = 70;
+    const BASE_R = 2;
 
     const resize = () => {
       canvas.width = window.innerWidth;

@@ -1,6 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { portfolioProjects } from '../mock';
 
+const CARD_GRADIENTS = [
+  'linear-gradient(145deg, #0f2044 0%, #1a3a6b 50%, #0d2d5c 100%)',
+  'linear-gradient(145deg, #2d0a4e 0%, #5b1fa3 50%, #1a0533 100%)',
+  'linear-gradient(145deg, #0a2d1a 0%, #0d5c35 50%, #051d12 100%)',
+  'linear-gradient(145deg, #1a0a2e 0%, #3d1a6b 50%, #0a0520 100%)',
+  'linear-gradient(145deg, #0f1a44 0%, #1a4a6b 50%, #0a2040 100%)',
+  'linear-gradient(145deg, #2d1a0a 0%, #6b3d1a 50%, #1a0d05 100%)',
+  'linear-gradient(145deg, #0a0a2e 0%, #1a2d7a 50%, #0d1a5c 100%)',
+  'linear-gradient(145deg, #1a0a1a 0%, #5c1a5c 50%, #2d0a2d 100%)',
+];
+
+const ExternalLinkIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    <polyline points="15,3 21,3 21,9" />
+    <line x1="10" y1="14" x2="21" y2="3" />
+  </svg>
+);
+
 const Gallery = ({ startIndex = 0, count = 4 }) => {
   const projects = portfolioProjects.slice(startIndex, startIndex + count);
   const [isVisible, setIsVisible] = useState(false);
@@ -28,7 +47,6 @@ const Gallery = ({ startIndex = 0, count = 4 }) => {
     return () => { document.body.style.overflow = ''; };
   }, [activeProject]);
 
-  // Prevent browser zoom (ctrl+scroll) when modal is open
   useEffect(() => {
     if (!activeProject) return;
     const preventZoom = (e) => {
@@ -43,29 +61,30 @@ const Gallery = ({ startIndex = 0, count = 4 }) => {
       <section ref={galleryRef} className="gallery-section">
         <h2 className="section-label">Gallery</h2>
         <div className={`gallery-grid-two ${isVisible ? 'fade-in' : ''}`}>
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className="work-card"
-              style={{ animationDelay: `${index * 0.1}s` }}
-              onClick={() => setActiveProject(project)}
-            >
-              <div className="work-image-wrapper">
-                <iframe
-                  src={project.splineUrl}
-                  title={project.title}
-                  className="work-image spline-frame"
-                  frameBorder="0"
-                  loading="lazy"
-                  style={{ pointerEvents: 'none' }}
-                />
-                <div className="work-text-overlay">
-                  <h3 className="work-title">{project.title}</h3>
-                  <p className="work-category">{project.category}</p>
+          {projects.map((project, index) => {
+            const gradientIndex = (startIndex + index) % CARD_GRADIENTS.length;
+            return (
+              <div
+                key={project.id}
+                className="work-card"
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => setActiveProject(project)}
+              >
+                <div className="work-image-wrapper">
+                  <div
+                    className="work-preview-bg"
+                    style={{ background: CARD_GRADIENTS[gradientIndex] }}
+                  >
+                    <div className="work-preview-orb" />
+                  </div>
+                  <div className="work-text-overlay">
+                    <h3 className="work-title">{project.title}</h3>
+                    <p className="work-category">{project.category}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -81,8 +100,20 @@ const Gallery = ({ startIndex = 0, count = 4 }) => {
               allowFullScreen
             />
             <div className="spline-modal-label">
-              <span className="spline-modal-title">{activeProject.title}</span>
-              <span className="spline-modal-category">{activeProject.category}</span>
+              <div className="spline-modal-info">
+                <span className="spline-modal-title">{activeProject.title}</span>
+                <span className="spline-modal-category">{activeProject.category}</span>
+              </div>
+              <a
+                href={activeProject.splineUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="spline-modal-link"
+                onClick={e => e.stopPropagation()}
+                title="Open project"
+              >
+                <ExternalLinkIcon />
+              </a>
             </div>
           </div>
         </div>
