@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { portfolioProjects } from '../mock';
 
-const CARD_GRADIENTS = [
+const CARD_GRADIENTS_DARK = [
   'linear-gradient(145deg, #0f2044 0%, #1a3a6b 50%, #0d2d5c 100%)',
   'linear-gradient(145deg, #0a1a5c 0%, #1e40af 50%, #0a1540 100%)',
   'linear-gradient(145deg, #0c2a4a 0%, #1e6091 50%, #0a1f3a 100%)',
@@ -12,6 +12,17 @@ const CARD_GRADIENTS = [
   'linear-gradient(145deg, #122b50 0%, #2563eb 50%, #0c1e3d 100%)',
 ];
 
+const CARD_GRADIENTS_LIGHT = [
+  'linear-gradient(145deg, #1e40af 0%, #3b82f6 50%, #1d4ed8 100%)',
+  'linear-gradient(145deg, #0369a1 0%, #0ea5e9 50%, #0284c7 100%)',
+  'linear-gradient(145deg, #1d4ed8 0%, #60a5fa 50%, #2563eb 100%)',
+  'linear-gradient(145deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%)',
+  'linear-gradient(145deg, #0c4a6e 0%, #38bdf8 50%, #075985 100%)',
+  'linear-gradient(145deg, #1d4ed8 0%, #93c5fd 50%, #2563eb 100%)',
+  'linear-gradient(145deg, #0369a1 0%, #60a5fa 50%, #0284c7 100%)',
+  'linear-gradient(145deg, #1e40af 0%, #818cf8 50%, #3730a3 100%)',
+];
+
 const ExternalLinkIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
@@ -20,7 +31,8 @@ const ExternalLinkIcon = () => (
   </svg>
 );
 
-const Gallery = ({ startIndex = 0, count = 4 }) => {
+const Gallery = ({ startIndex = 0, count = 4, darkMode = true }) => {
+  const CARD_GRADIENTS = darkMode ? CARD_GRADIENTS_DARK : CARD_GRADIENTS_LIGHT;
   const projects = portfolioProjects.slice(startIndex, startIndex + count);
   const [isVisible, setIsVisible] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
