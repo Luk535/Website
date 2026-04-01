@@ -492,10 +492,10 @@ body.light .nav-item-active {
   justify-content: space-between;
   gap: 40px;
   padding: 36px 56px;
-  background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 100%);
+  background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
   border-radius: 32px;
   text-decoration: none;
-  box-shadow: 0 12px 48px rgba(124, 58, 237, 0.25), 0 24px 80px rgba(124, 58, 237, 0.15);
+  box-shadow: 0 12px 48px rgba(29, 78, 216, 0.25), 0 24px 80px rgba(29, 78, 216, 0.15);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
@@ -504,14 +504,14 @@ body.light .nav-item-active {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+  background: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
 .contact-button:hover {
   transform: scale(1.08);
-  box-shadow: 0 20px 64px rgba(124, 58, 237, 0.35), 0 32px 96px rgba(124, 58, 237, 0.25);
+  box-shadow: 0 20px 64px rgba(29, 78, 216, 0.35), 0 32px 96px rgba(29, 78, 216, 0.25);
 }
 .contact-button:hover::before { opacity: 1; }
 
