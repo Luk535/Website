@@ -3,13 +3,13 @@ import { portfolioProjects } from '../mock';
 
 const CARD_GRADIENTS = [
   'linear-gradient(145deg, #0f2044 0%, #1a3a6b 50%, #0d2d5c 100%)',
-  'linear-gradient(145deg, #2d0a4e 0%, #5b1fa3 50%, #1a0533 100%)',
-  'linear-gradient(145deg, #0a2d1a 0%, #0d5c35 50%, #051d12 100%)',
-  'linear-gradient(145deg, #1a0a2e 0%, #3d1a6b 50%, #0a0520 100%)',
-  'linear-gradient(145deg, #0f1a44 0%, #1a4a6b 50%, #0a2040 100%)',
-  'linear-gradient(145deg, #2d1a0a 0%, #6b3d1a 50%, #1a0d05 100%)',
-  'linear-gradient(145deg, #0a0a2e 0%, #1a2d7a 50%, #0d1a5c 100%)',
-  'linear-gradient(145deg, #1a0a1a 0%, #5c1a5c 50%, #2d0a2d 100%)',
+  'linear-gradient(145deg, #0a1a5c 0%, #1e40af 50%, #0a1540 100%)',
+  'linear-gradient(145deg, #0c2a4a 0%, #1e6091 50%, #0a1f3a 100%)',
+  'linear-gradient(145deg, #0d1b4e 0%, #1a4fa8 50%, #0a1440 100%)',
+  'linear-gradient(145deg, #0f2a44 0%, #2d6a9f 50%, #091d33 100%)',
+  'linear-gradient(145deg, #060d2e 0%, #0e2070 50%, #040a1f 100%)',
+  'linear-gradient(145deg, #0a2040 0%, #1d5ba6 50%, #071530 100%)',
+  'linear-gradient(145deg, #122b50 0%, #2563eb 50%, #0c1e3d 100%)',
 ];
 
 const ExternalLinkIcon = () => (
