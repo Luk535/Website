@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { portfolioProjects } from '../mock';
 
 const CARD_GRADIENTS_DARK = [
@@ -38,15 +38,15 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
   const [activeProject, setActiveProject] = useState(null);
   const galleryRef = useRef(null);
 
-  const openPreview = (project) => {
-    setActiveProject(project);
-    onPreviewChange?.(true);
-  };
-
-  const closePreview = () => {
+  const closePreview = useCallback(() => {
     setActiveProject(null);
     onPreviewChange?.(false);
-  };
+  }, [onPreviewChange]);
+
+  const openPreview = useCallback((project) => {
+    setActiveProject(project);
+    onPreviewChange?.(true);
+  }, [onPreviewChange]);
 
   useEffect(() => {
     const currentRef = galleryRef.current;
@@ -62,7 +62,7 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
     const onKey = (e) => { if (e.key === 'Escape') closePreview(); };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, []);
+  }, [closePreview]);
 
   useEffect(() => {
     document.body.style.overflow = activeProject ? 'hidden' : '';
