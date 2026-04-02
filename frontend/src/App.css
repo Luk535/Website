@@ -488,6 +488,7 @@ body.light .nav-item-active {
   justify-content: space-between;
   gap: 40px;
   padding: 36px 56px;
+  margin: 0 auto;
   background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
   border-radius: 32px;
   text-decoration: none;
