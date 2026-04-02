@@ -11,12 +11,10 @@ const ParticleBackground = () => {
     const mouse = { x: -9999, y: -9999 };
     let particles = [];
 
-    const REPEL_RADIUS = 120;
-    const REPEL_STRENGTH = 10;
+    const REPEL_RADIUS = 90;
+    const REPEL_STRENGTH = 6;
     const SPACING = 38;
     const BASE_R = 2;
-    const SPRING_CONSTANT = 0.1;
-    const DAMPING = 0.92;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -37,19 +35,9 @@ const ParticleBackground = () => {
 
     const onMove = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
     const onLeave = () => { mouse.x = -9999; mouse.y = -9999; };
-    const onTouch = (e) => {
-      if (e.touches.length > 0) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-      }
-    };
-    const onTouchEnd = () => { mouse.x = -9999; mouse.y = -9999; };
 
     window.addEventListener('mousemove', onMove);
     window.addEventListener('mouseleave', onLeave);
-    window.addEventListener('touchmove', onTouch, { passive: true });
-    window.addEventListener('touchend', onTouchEnd);
-    window.addEventListener('touchcancel', onTouchEnd);
     window.addEventListener('resize', resize);
     resize();
 
@@ -70,10 +58,10 @@ const ParticleBackground = () => {
           p.vy += (dy / dist) * force;
         }
 
-        p.vx += (p.hx - p.x) * SPRING_CONSTANT;
-        p.vy += (p.hy - p.y) * SPRING_CONSTANT;
-        p.vx *= DAMPING;
-        p.vy *= DAMPING;
+        p.vx += (p.hx - p.x) * 0.04;
+        p.vy += (p.hy - p.y) * 0.04;
+        p.vx *= 0.82;
+        p.vy *= 0.82;
         p.x += p.vx;
         p.y += p.vy;
 
@@ -107,9 +95,6 @@ const ParticleBackground = () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseleave', onLeave);
-      window.removeEventListener('touchmove', onTouch);
-      window.removeEventListener('touchend', onTouchEnd);
-      window.removeEventListener('touchcancel', onTouchEnd);
       window.removeEventListener('resize', resize);
     };
   }, []);
