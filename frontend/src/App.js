@@ -11,6 +11,7 @@ function App() {
   const [page, setPage] = useState('Home');
   const [darkMode, setDarkMode] = useState(true);
   const [overlay, setOverlay] = useState(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle('light', !darkMode);
@@ -40,10 +41,10 @@ function App() {
         />
       )}
       <ParticleBackground />
-      <Nav activePage={page} onPageChange={setPage} darkMode={darkMode} onThemeToggle={handleThemeToggle} />
+      {!previewOpen && <Nav activePage={page} onPageChange={setPage} darkMode={darkMode} onThemeToggle={handleThemeToggle} />}
       {page === 'Home' && <Hero />}
-      {page === 'Page 1' && <Gallery startIndex={0} count={4} darkMode={darkMode} />}
-      {page === 'Page 2' && <Gallery startIndex={4} count={4} darkMode={darkMode} />}
+      {page === 'Page 1' && <Gallery startIndex={0} count={4} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
+      {page === 'Page 2' && <Gallery startIndex={4} count={4} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
       {page === 'Page 3' && (
         <section className="placeholder-section">
           <p className="section-label">Page 3</p>

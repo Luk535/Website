@@ -31,12 +31,22 @@ const ExternalLinkIcon = () => (
   </svg>
 );
 
-const Gallery = ({ startIndex = 0, count = 4, darkMode = true }) => {
+const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }) => {
   const CARD_GRADIENTS = darkMode ? CARD_GRADIENTS_DARK : CARD_GRADIENTS_LIGHT;
   const projects = portfolioProjects.slice(startIndex, startIndex + count);
   const [isVisible, setIsVisible] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
   const galleryRef = useRef(null);
+
+  const openPreview = (project) => {
+    setActiveProject(project);
+    onPreviewChange?.(true);
+  };
+
+  const closePreview = () => {
+    setActiveProject(null);
+    onPreviewChange?.(false);
+  };
 
   useEffect(() => {
     const currentRef = galleryRef.current;
@@ -49,7 +59,7 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true }) => {
   }, []);
 
   useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') setActiveProject(null); };
+    const onKey = (e) => { if (e.key === 'Escape') closePreview(); };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
@@ -80,7 +90,7 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true }) => {
                 key={project.id}
                 className="work-card"
                 style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => setActiveProject(project)}
+                onClick={() => openPreview(project)}
               >
                 <div className="work-image-wrapper">
                   <div
@@ -101,8 +111,8 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true }) => {
       </section>
 
       {activeProject && (
-        <div className="spline-modal" onClick={() => setActiveProject(null)}>
-          <button className="spline-modal-close" onClick={() => setActiveProject(null)}>×</button>
+        <div className="spline-modal" onClick={closePreview}>
+          <button className="spline-modal-close" onClick={closePreview}>×</button>
           <div className="spline-modal-content" onClick={e => e.stopPropagation()}>
             <iframe
               src={activeProject.splineUrl}
