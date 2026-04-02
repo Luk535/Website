@@ -235,7 +235,7 @@ body.light .nav-item-active {
   align-items: center;
   justify-content: center;
   min-height: 50vh;
-  background: var(--section-bg);
+  background: transparent;
   position: relative;
   z-index: 1;
 }
@@ -476,7 +476,7 @@ body.light .nav-item-active {
   align-items: center;
   justify-content: center;
   min-height: 60vh;
-  background: var(--section-bg);
+  background: transparent;
   position: relative;
   z-index: 1;
 }
