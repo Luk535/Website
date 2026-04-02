@@ -13,7 +13,7 @@ const ParticleBackground = () => {
 
     const REPEL_RADIUS = 90;
     const REPEL_STRENGTH = 6;
-    const SPACING = 70;
+    const SPACING = 38;
     const BASE_R = 2;
 
     const resize = () => {
