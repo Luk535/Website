@@ -94,6 +94,15 @@ export const portfolioProjects = [
       "https://images.unsplash.com/photo-1588657545172-3191326df6bc"
     ],
     description: "Minimal product photography with emphasis on form"
+  },
+  {
+    id: 9,
+    title: "Mini House",
+    category: "3D Design",
+    splineUrl: "https://my.spline.design/minihouse-4qJO5LEdaCsuvHs27AyXb5Uv/",
+    coverImage: "",
+    images: [],
+    description: "Interactive 3D mini house model built with Spline"
   }
 ];
 
