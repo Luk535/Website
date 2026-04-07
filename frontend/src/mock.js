@@ -55,6 +55,13 @@ export const portfolioProjects = [
     splineUrl: "https://my.spline.design/blobs-31AeKgftUi1jLt9rFTllw15r/",
     darkText: false,
   },
+  {
+    id: 9,
+    title: "Mini House",
+    category: "3D Design",
+    splineUrl: "https://my.spline.design/minihouse-4qJO5LEdaCsuvHs27AyXb5Uv/",
+    darkText: false,
+  },
 ];
 
 export const contactEmail = "lukacianfarani@gmail.com";

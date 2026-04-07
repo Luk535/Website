@@ -45,12 +45,7 @@ function App() {
       {page === 'Home' && <Hero />}
       {page === 'Page 1' && <Gallery startIndex={0} count={4} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
       {page === 'Page 2' && <Gallery startIndex={4} count={4} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
-      {page === 'Page 3' && (
-        <section className="placeholder-section">
-          <p className="section-label">Page 3</p>
-          <p className="placeholder-text">Content coming soon</p>
-        </section>
-      )}
+      {page === 'Page 3' && <Gallery startIndex={8} count={1} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
       {page === 'Contact' && <ContactButton />}
     </div>
   );
