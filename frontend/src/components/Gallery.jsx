@@ -11,25 +11,25 @@ if (typeof window !== 'undefined' && !window.splineViewerLoaded) {
 }
 
 const CARD_GRADIENTS_DARK = [
-  'linear-gradient(145deg, #0f2044 0%, #1a3a6b 50%, #0d2d5c 100%)',
-  'linear-gradient(145deg, #0a1a5c 0%, #1e40af 50%, #0a1540 100%)',
-  'linear-gradient(145deg, #0c1a4a 0%, #1a4fa8 50%, #091a3d 100%)',
-  'linear-gradient(145deg, #0d1b4e 0%, #1a4fa8 50%, #0a1440 100%)',
-  'linear-gradient(145deg, #0f2044 0%, #1e40af 50%, #091d33 100%)',
-  'linear-gradient(145deg, #060d2e 0%, #0e2070 50%, #040a1f 100%)',
-  'linear-gradient(145deg, #0a2040 0%, #1d5ba6 50%, #071530 100%)',
-  'linear-gradient(145deg, #122b50 0%, #2563eb 50%, #0c1e3d 100%)',
+  'linear-gradient(145deg, #00102e 0%, #0035aa 50%, #000c22 100%)',
+  'linear-gradient(145deg, #000e3d 0%, #1e40af 50%, #000933 100%)',
+  'linear-gradient(145deg, #000b32 0%, #003db3 50%, #000822 100%)',
+  'linear-gradient(145deg, #000f38 0%, #003db3 50%, #000933 100%)',
+  'linear-gradient(145deg, #00102e 0%, #1e40af 50%, #000a1e 100%)',
+  'linear-gradient(145deg, #00081a 0%, #001e7a 50%, #00040f 100%)',
+  'linear-gradient(145deg, #000e28 0%, #0040a0 50%, #000920 100%)',
+  'linear-gradient(145deg, #000f2e 0%, #2563eb 50%, #000920 100%)',
 ];
 
 const CARD_GRADIENTS_LIGHT = [
   'linear-gradient(145deg, #1e40af 0%, #3b82f6 50%, #1d4ed8 100%)',
   'linear-gradient(145deg, #1d4ed8 0%, #3b82f6 50%, #2563eb 100%)',
   'linear-gradient(145deg, #1d4ed8 0%, #60a5fa 50%, #2563eb 100%)',
-  'linear-gradient(145deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%)',
+  'linear-gradient(145deg, #1540b0 0%, #3b82f6 50%, #1e40af 100%)',
   'linear-gradient(145deg, #1e40af 0%, #60a5fa 50%, #1d4ed8 100%)',
   'linear-gradient(145deg, #1d4ed8 0%, #93c5fd 50%, #2563eb 100%)',
-  'linear-gradient(145deg, #1e3a8a 0%, #60a5fa 50%, #1d4ed8 100%)',
-  'linear-gradient(145deg, #1e40af 0%, #2563eb 50%, #1e3a8a 100%)',
+  'linear-gradient(145deg, #1540b0 0%, #60a5fa 50%, #1d4ed8 100%)',
+  'linear-gradient(145deg, #1e40af 0%, #2563eb 50%, #1540b0 100%)',
 ];
 
 const ExternalLinkIcon = () => (
