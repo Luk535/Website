@@ -62,6 +62,13 @@ export const portfolioProjects = [
     splineUrl: "https://my.spline.design/minihouse-4qJO5LEdaCsuvHs27AyXb5Uv/",
     darkText: false,
   },
+  {
+    id: 10,
+    title: "Liquid Glass",
+    category: "3D Design",
+    splineUrl: "https://my.spline.design/liquidglass-hzheaGQBovEUVKgWmbAAtCpc/",
+    darkText: false,
+  },
 ];
 
 export const contactEmail = "lukacianfarani@gmail.com";
