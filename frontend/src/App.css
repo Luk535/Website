@@ -358,6 +358,23 @@ body.light .nav-item-active {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+.work-description {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 6px;
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.work-card:hover .work-description {
+  max-height: 40px;
+  opacity: 1;
+}
+
 /* ======================= MODAL ======================= */
 .spline-modal {
   position: fixed;
@@ -422,6 +439,30 @@ body.light .nav-item-active {
 .spline-viewer-container spline-viewer {
   width: 100%;
   height: 100%;
+}
+
+.spline-modal-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 12, 30, 0.85);
+  z-index: 10;
+  border-radius: 24px;
+}
+
+.spline-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(100, 160, 255, 0.85);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 .spline-modal-label {

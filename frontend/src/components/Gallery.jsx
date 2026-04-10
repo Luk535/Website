@@ -45,6 +45,7 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
   const projects = portfolioProjects.slice(startIndex, startIndex + count);
   const [isVisible, setIsVisible] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const galleryRef = useRef(null);
 
   const closePreview = useCallback(() => {
@@ -54,6 +55,7 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
 
   const openPreview = useCallback((project) => {
     setActiveProject(project);
+    setIsLoading(true);
     onPreviewChange?.(true);
   }, [onPreviewChange]);
 
@@ -111,6 +113,7 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
                   <div className="work-text-overlay">
                     <h3 className="work-title">{project.title}</h3>
                     <p className="work-category">{project.category}</p>
+                    <p className="work-description">{project.description}</p>
                   </div>
                 </div>
               </div>
@@ -123,9 +126,14 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
         <div className="spline-modal" onClick={closePreview}>
           <button className="spline-modal-close" onClick={closePreview}>×</button>
           <div className="spline-modal-content" onClick={e => e.stopPropagation()}>
+            {isLoading && (
+              <div className="spline-modal-loader">
+                <div className="spline-spinner" />
+              </div>
+            )}
             {activeProject.viewerUrl ? (
               <div className="spline-viewer-container">
-                <spline-viewer url={activeProject.viewerUrl} />
+                <spline-viewer url={activeProject.viewerUrl} onLoad={() => setIsLoading(false)} />
               </div>
             ) : (
               <iframe
@@ -134,6 +142,7 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
                 className="spline-modal-frame"
                 frameBorder="0"
                 allowFullScreen
+                onLoad={() => setIsLoading(false)}
               />
             )}
             <div className="spline-modal-label">
