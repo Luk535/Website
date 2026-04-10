@@ -42,9 +42,9 @@ function App() {
       <ParticleBackground />
       {!previewOpen && <Nav activePage={page} onPageChange={setPage} darkMode={darkMode} onThemeToggle={handleThemeToggle} />}
       {page === 'Home' && <Hero />}
-      {page === 'Page 1' && <Gallery startIndex={0} count={4} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
-      {page === 'Page 2' && <Gallery startIndex={4} count={4} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
-      {page === 'Page 3' && <Gallery startIndex={8} count={2} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
+      {page === '3D Models' && <Gallery startIndex={0} count={4} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
+      {page === 'Interactive' && <Gallery startIndex={4} count={4} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
+      {page === 'Materials' && <Gallery startIndex={8} count={2} darkMode={darkMode} onPreviewChange={setPreviewOpen} />}
       {page === 'Contact' && <ContactButton />}
     </div>
   );

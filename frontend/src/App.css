@@ -641,11 +641,18 @@ body.light .nav-item-active {
   .spline-modal { padding: 16px; }
   .spline-modal-content { width: 96vw; height: 70vh; }
 }
+@media (max-width: 600px) {
+  .nav-item { padding: 7px 10px; font-size: 11.5px; }
+  .spline-modal-label { max-width: calc(100vw - 48px); white-space: normal; }
+}
 @media (max-width: 480px) {
   .hero-name { font-size: 40px; letter-spacing: -1.5px; }
   .contact-text { font-size: 28px; }
   .work-title { font-size: 14px; }
   .work-category { font-size: 10px; }
+  .nav-item { padding: 6px 8px; font-size: 11px; }
+  .spline-modal-content { width: 100vw; height: 80vh; border-radius: 16px; }
+  .spline-modal-close { top: 12px; right: 12px; width: 42px; height: 42px; font-size: 24px; }
 }
 
 html { scroll-behavior: smooth; }

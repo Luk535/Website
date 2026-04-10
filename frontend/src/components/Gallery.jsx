@@ -47,6 +47,7 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
   const [activeProject, setActiveProject] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const galleryRef = useRef(null);
+  const touchStartY = useRef(null);
 
   const closePreview = useCallback(() => {
     setActiveProject(null);
@@ -89,6 +90,17 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
     return () => document.removeEventListener('wheel', preventZoom);
   }, [activeProject]);
 
+  const handleTouchStart = useCallback((e) => {
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback((e) => {
+    if (touchStartY.current === null) return;
+    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+    if (deltaY > 80) closePreview();
+    touchStartY.current = null;
+  }, [closePreview]);
+
   useEffect(() => {
     if (!activeProject?.viewerUrl || !isLoading) return;
     const timeout = setTimeout(() => setIsLoading(false), 2500);
@@ -129,7 +141,12 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
       </section>
 
       {activeProject && (
-        <div className="spline-modal" onClick={closePreview}>
+        <div
+          className="spline-modal"
+          onClick={closePreview}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <button className="spline-modal-close" onClick={closePreview}>×</button>
           <div className="spline-modal-content" onClick={e => e.stopPropagation()}>
             {isLoading && (
