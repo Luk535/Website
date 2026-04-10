@@ -1,6 +1,15 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { portfolioProjects } from '../mock';
 
+// Load Spline viewer script
+if (typeof window !== 'undefined' && !window.splineViewerLoaded) {
+  const script = document.createElement('script');
+  script.type = 'module';
+  script.src = 'https://unpkg.com/@splinetool/viewer@1.12.81/build/spline-viewer.js';
+  document.head.appendChild(script);
+  window.splineViewerLoaded = true;
+}
+
 const CARD_GRADIENTS_DARK = [
   'linear-gradient(145deg, #0f2044 0%, #1a3a6b 50%, #0d2d5c 100%)',
   'linear-gradient(145deg, #0a1a5c 0%, #1e40af 50%, #0a1540 100%)',
@@ -114,20 +123,26 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
         <div className="spline-modal" onClick={closePreview}>
           <button className="spline-modal-close" onClick={closePreview}>×</button>
           <div className="spline-modal-content" onClick={e => e.stopPropagation()}>
-            <iframe
-              src={activeProject.splineUrl}
-              title={activeProject.title}
-              className="spline-modal-frame"
-              frameBorder="0"
-              allowFullScreen
-            />
+            {activeProject.viewerUrl ? (
+              <div className="spline-viewer-container">
+                <spline-viewer url={activeProject.viewerUrl} />
+              </div>
+            ) : (
+              <iframe
+                src={activeProject.splineUrl}
+                title={activeProject.title}
+                className="spline-modal-frame"
+                frameBorder="0"
+                allowFullScreen
+              />
+            )}
             <div className="spline-modal-label">
               <div className="spline-modal-info">
                 <span className="spline-modal-title">{activeProject.title}</span>
                 <span className="spline-modal-category">{activeProject.category}</span>
               </div>
               <a
-                href={activeProject.splineUrl}
+                href={activeProject.viewerUrl || activeProject.splineUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="spline-modal-link"

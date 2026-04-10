@@ -67,6 +67,7 @@ export const portfolioProjects = [
     title: "Liquid Glass",
     category: "3D Design",
     splineUrl: "https://my.spline.design/liquidglass-hzheaGQBovEUVKgWmbAAtCpc/",
+    viewerUrl: "https://prod.spline.design/Axit6venUKxY8Ahz/scene.splinecode",
     darkText: false,
   },
 ];
