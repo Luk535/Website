@@ -3,7 +3,6 @@ import './App.css';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
 import ContactButton from './components/ContactButton';
-import About from './components/About';
 import Nav from './components/Nav';
 import ParticleBackground from './components/ParticleBackground';
 
