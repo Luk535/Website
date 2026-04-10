@@ -19,16 +19,13 @@ const Hero = () => {
             if (char === ' ') return <span key={i} className="hero-space">&nbsp;</span>;
             const letterIdx = idx++;
             return (
-              <a
+              <span
                 key={i}
                 className="hero-letter"
                 style={{ '--idx': letterIdx, '--total': total }}
-                href={`https://en.wikipedia.org/wiki/${char}`}
-                target="_blank"
-                rel="noreferrer"
               >
                 {char}
-              </a>
+              </span>
             );
           })}
         </h1>

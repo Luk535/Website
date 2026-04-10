@@ -89,6 +89,12 @@ const Gallery = ({ startIndex = 0, count = 4, darkMode = true, onPreviewChange }
     return () => document.removeEventListener('wheel', preventZoom);
   }, [activeProject]);
 
+  useEffect(() => {
+    if (!activeProject?.viewerUrl || !isLoading) return;
+    const timeout = setTimeout(() => setIsLoading(false), 2500);
+    return () => clearTimeout(timeout);
+  }, [activeProject, isLoading]);
+
   return (
     <>
       <section ref={galleryRef} className="gallery-section">
